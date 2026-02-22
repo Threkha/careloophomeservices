@@ -109,6 +109,22 @@ button{
     margin-top:10px;
 }
 
+.contact-box{
+    background:white;
+    color:#333;
+    padding:30px;
+    border-radius:15px;
+    display:inline-block;
+}
+
+.contact-box a{
+    display:block;
+    margin:10px 0;
+    color:#667eea;
+    font-weight:bold;
+    text-decoration:none;
+}
+
 footer{
     background:black;
     color:white;
@@ -123,7 +139,6 @@ footer{
 <nav>
 <div><b>Careloop</b></div>
 <ul>
-<li><a href="#" id="navHome">ホーム</a></li>
 <li>
 <select id="langSelect">
 <option value="ja" selected>日本語</option>
@@ -138,17 +153,27 @@ footer{
 <h1 id="homeTitle">ケアループへようこそ</h1>
 
 <div class="services">
-<div class="service-card" onclick="openForm('doorstep')" id="doorCard">
+<div class="service-card" onclick="openForm('doorstep')">
 <h3 id="doorTitle">🚚 訪問診療</h3>
 </div>
 
-<div class="service-card" onclick="openForm('doctor')" id="docCard">
+<div class="service-card" onclick="openForm('doctor')">
 <h3 id="docTitle">👨‍⚕️ 医師相談</h3>
 </div>
 
-<div class="service-card" onclick="openForm('physio')" id="phyCard">
+<div class="service-card" onclick="openForm('physio')">
 <h3 id="phyTitle">💪 理学療法</h3>
 </div>
+</div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section>
+<h2 id="contactTitle">お問い合わせ</h2>
+<div class="contact-box">
+<a href="tel:+918838397429" id="contactPhone">📞 +91 88383 97429</a>
+<a href="mailto:careloop2026@gmail.com" id="contactEmail">📧 careloop2026@gmail.com</a>
+<a href="https://www.instagram.com/_.careloop._?igsh=czRzYTVjbjhra251" target="_blank" id="contactInsta">📷 Instagram</a>
 </div>
 </section>
 
@@ -175,6 +200,10 @@ homeTitle:"ケアループへようこそ",
 doorTitle:"🚚 訪問診療",
 docTitle:"👨‍⚕️ 医師相談",
 phyTitle:"💪 理学療法",
+contactTitle:"お問い合わせ",
+contactPhone:"📞 電話: +91 88383 97429",
+contactEmail:"📧 メール: careloop2026@gmail.com",
+contactInsta:"📷 インスタグラム",
 footerText:"© 2026 ケアループ. 全著作権所有。",
 submit:"送信",
 success:"送信が成功しました！"
@@ -184,6 +213,10 @@ homeTitle:"Welcome to Careloop",
 doorTitle:"🚚 Doorstep Visit",
 docTitle:"👨‍⚕️ Doctor Consultation",
 phyTitle:"💪 Physiotherapy",
+contactTitle:"Contact Us",
+contactPhone:"📞 Mobile: +91 88383 97429",
+contactEmail:"📧 Email: careloop2026@gmail.com",
+contactInsta:"📷 Instagram",
 footerText:"© 2026 Careloop. All rights reserved.",
 submit:"Submit",
 success:"Submitted successfully!"
@@ -207,6 +240,8 @@ document.getElementById(key).textContent=translations[currentLang][key];
 }
 
 changeLanguage();
+
+/* Forms remain same as before */
 
 function openForm(type){
 document.getElementById("formModal").style.display="flex";
