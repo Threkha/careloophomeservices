@@ -70,6 +70,23 @@ section{
     transform:translateY(-8px);
 }
 
+.contact-box{
+    background:white;
+    color:#333;
+    padding:30px;
+    border-radius:15px;
+    display:inline-block;
+    margin-top:30px;
+}
+
+.contact-box a{
+    display:block;
+    margin:10px 0;
+    color:#667eea;
+    font-weight:bold;
+    text-decoration:none;
+}
+
 .modal{
     display:none;
     position:fixed;
@@ -109,22 +126,6 @@ button{
     margin-top:10px;
 }
 
-.contact-box{
-    background:white;
-    color:#333;
-    padding:30px;
-    border-radius:15px;
-    display:inline-block;
-}
-
-.contact-box a{
-    display:block;
-    margin:10px 0;
-    color:#667eea;
-    font-weight:bold;
-    text-decoration:none;
-}
-
 footer{
     background:black;
     color:white;
@@ -139,6 +140,9 @@ footer{
 <nav>
 <div><b>Careloop</b></div>
 <ul>
+<li><a href="#home" id="navHome">ホーム</a></li>
+<li><a href="#services" id="navServices">サービス</a></li>
+<li><a href="#contact" id="navContact">お問い合わせ</a></li>
 <li>
 <select id="langSelect">
 <option value="ja" selected>日本語</option>
@@ -149,9 +153,13 @@ footer{
 </nav>
 </header>
 
-<section>
+<!-- HOME -->
+<section id="home">
 <h1 id="homeTitle">ケアループへようこそ</h1>
+</section>
 
+<!-- SERVICES -->
+<section id="services">
 <div class="services">
 <div class="service-card" onclick="openForm('doorstep')">
 <h3 id="doorTitle">🚚 訪問診療</h3>
@@ -167,9 +175,10 @@ footer{
 </div>
 </section>
 
-<!-- CONTACT SECTION -->
-<section>
+<!-- CONTACT -->
+<section id="contact">
 <h2 id="contactTitle">お問い合わせ</h2>
+
 <div class="contact-box">
 <a href="tel:+918838397429" id="contactPhone">📞 +91 88383 97429</a>
 <a href="mailto:careloop2026@gmail.com" id="contactEmail">📧 careloop2026@gmail.com</a>
@@ -177,6 +186,7 @@ footer{
 </div>
 </section>
 
+<!-- MODAL FORM -->
 <div class="modal" id="formModal">
 <div class="modal-content">
 <h2 id="formTitle"></h2>
@@ -196,6 +206,9 @@ footer{
 
 const translations={
 ja:{
+navHome:"ホーム",
+navServices:"サービス",
+navContact:"お問い合わせ",
 homeTitle:"ケアループへようこそ",
 doorTitle:"🚚 訪問診療",
 docTitle:"👨‍⚕️ 医師相談",
@@ -209,6 +222,9 @@ submit:"送信",
 success:"送信が成功しました！"
 },
 en:{
+navHome:"Home",
+navServices:"Services",
+navContact:"Contact",
 homeTitle:"Welcome to Careloop",
 doorTitle:"🚚 Doorstep Visit",
 docTitle:"👨‍⚕️ Doctor Consultation",
@@ -241,7 +257,7 @@ document.getElementById(key).textContent=translations[currentLang][key];
 
 changeLanguage();
 
-/* Forms remain same as before */
+/* Form Logic same as before */
 
 function openForm(type){
 document.getElementById("formModal").style.display="flex";
