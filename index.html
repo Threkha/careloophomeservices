@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -133,23 +133,28 @@ color: white;
 padding: 2rem;
 text-align: center;
 }
+
+#contact a {
+color: white;
+text-decoration: underline;
+}
 </style>
 </head>
 
-<body>
+<body onload="changeLanguage('jp')">
 
 <header>
 <nav>
 <div style="font-weight:bold;font-size:20px;">Careloop</div>
 
 <ul>
-<li><a href="#home" id="navHome">Home</a></li>
-<li><a href="#services" id="navServices">Services</a></li>
-<li><a href="#contact" id="navContact">Contact</a></li>
+<li><a href="#home" id="navHome">ホーム</a></li>
+<li><a href="#services" id="navServices">サービス</a></li>
+<li><a href="#contact" id="navContact">お問い合わせ</a></li>
 <li>
 <select class="language-select" onchange="changeLanguage(this.value)">
+<option value="jp" selected>日本語</option>
 <option value="en">English</option>
-<option value="jp">日本語</option>
 </select>
 </li>
 </ul>
@@ -157,48 +162,52 @@ text-align: center;
 </header>
 
 <section id="home">
-<h1 id="homeTitle">Welcome to Careloop</h1>
-<p id="homeDesc">Your casual healthcare partner for doorstep convenience.</p>
+<h1 id="homeTitle">ケアループへようこそ</h1>
+<p id="homeDesc">ご自宅で安心できる医療サービス。</p>
 </section>
 
 <section id="services">
-<h2 id="serviceTitle">Our Services</h2>
+<h2 id="serviceTitle">サービス内容</h2>
 <div class="services">
 
 <div class="service-card" onclick="openModal('doorstep')">
-<h3 id="doorTitle">🚚 Doorstep Visit</h3>
-<p id="doorDesc">Expert care delivered at your home.</p>
+<h3 id="doorTitle">🚚 訪問診療</h3>
+<p id="doorDesc">医師がご自宅へ訪問します。</p>
 </div>
 
 <div class="service-card" onclick="openModal('doctor')">
-<h3 id="docTitle">👨‍⚕️ Doctor Visit</h3>
-<p id="docDesc">Consult specialist doctors easily.</p>
+<h3 id="docTitle">👨‍⚕️ 医師相談</h3>
+<p id="docDesc">専門医による診察。</p>
 </div>
 
 <div class="service-card" onclick="openModal('physio')">
-<h3 id="phyTitle">💪 Physiotherapy</h3>
-<p id="phyDesc">Professional recovery sessions.</p>
+<h3 id="phyTitle">💪 理学療法</h3>
+<p id="phyDesc">専門的なリハビリ治療。</p>
 </div>
 
 </div>
 </section>
 
 <section id="contact">
-<h2 id="contactTitle">Contact Us</h2>
-<p>📞 +91 88383 97429 | ✉ careloop2026@gmail.com</p>
+<h2 id="contactTitle">お問い合わせ</h2>
+<p>
+📞 <a href="tel:+918838397429">+91 88383 97429</a> |
+✉ <a href="mailto:careloop2026@gmail.com">careloop2026@gmail.com</a> |
+📱 <a href="https://www.instagram.com/_.careloop._?igsh=czRzYTVjbjhra251" target="_blank">Instagram</a>
+</p>
 </section>
 
-<!-- Modals (UNCHANGED FEATURES) -->
+<!-- MODALS SAME AS BEFORE -->
 <div id="doorstepModal" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal('doorstep')">&times;</span>
-<h2 id="doorFormTitle">Doorstep Doctor Visit</h2>
+<h2 id="doorFormTitle">訪問医師予約</h2>
 <form>
-<input placeholder="Patient Name">
-<input placeholder="Phone Number">
-<input placeholder="Address">
-<textarea placeholder="Symptoms"></textarea>
-<button>Book</button>
+<input id="d_name" placeholder="患者名">
+<input id="d_phone" placeholder="電話番号">
+<input id="d_address" placeholder="住所">
+<textarea id="d_symptoms" placeholder="症状"></textarea>
+<button id="doorBtn">予約する</button>
 </form>
 </div>
 </div>
@@ -206,12 +215,12 @@ text-align: center;
 <div id="doctorModal" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal('doctor')">&times;</span>
-<h2 id="docFormTitle">Doctor Appointment</h2>
+<h2 id="docFormTitle">医師予約</h2>
 <form>
-<input placeholder="Patient Name">
-<input placeholder="Phone Number">
-<textarea placeholder="Concern"></textarea>
-<button>Book</button>
+<input id="doc_name" placeholder="患者名">
+<input id="doc_phone" placeholder="電話番号">
+<textarea id="doc_concern" placeholder="相談内容"></textarea>
+<button id="docBtn">予約する</button>
 </form>
 </div>
 </div>
@@ -219,30 +228,27 @@ text-align: center;
 <div id="physioModal" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal('physio')">&times;</span>
-<h2 id="phyFormTitle">Physiotherapy Session</h2>
+<h2 id="phyFormTitle">理学療法予約</h2>
 <form>
-<input placeholder="Patient Name">
-<input placeholder="Phone Number">
-<textarea placeholder="Injury Details"></textarea>
-<button>Book</button>
+<input id="p_name" placeholder="患者名">
+<input id="p_phone" placeholder="電話番号">
+<textarea id="p_details" placeholder="怪我の詳細"></textarea>
+<button id="phyBtn">予約する</button>
 </form>
 </div>
 </div>
 
 <footer>
-<p id="footerText">© 2026 Careloop. All rights reserved.</p>
+<p id="footerText">© 2026 ケアループ. 全著作権所有。</p>
 </footer>
 
 <script>
-
 function openModal(type){
 document.getElementById(type + "Modal").style.display="block";
 }
-
 function closeModal(type){
 document.getElementById(type + "Modal").style.display="none";
 }
-
 window.onclick=function(e){
 if(e.target.classList.contains("modal")){
 e.target.style.display="none";
@@ -251,41 +257,77 @@ e.target.style.display="none";
 
 function changeLanguage(lang){
 
-if(lang==="jp"){
+if(lang==="en"){
 
-document.getElementById("navHome").innerText="ホーム";
-document.getElementById("navServices").innerText="サービス";
-document.getElementById("navContact").innerText="お問い合わせ";
+document.documentElement.lang="en";
 
-document.getElementById("homeTitle").innerText="ケアループへようこそ";
-document.getElementById("homeDesc").innerText="ご自宅で安心できる医療サービス。";
+navHome.innerText="Home";
+navServices.innerText="Services";
+navContact.innerText="Contact";
 
-document.getElementById("serviceTitle").innerText="サービス内容";
+homeTitle.innerText="Welcome to Careloop";
+homeDesc.innerText="Your casual healthcare partner for doorstep convenience.";
 
-document.getElementById("doorTitle").innerText="🚚 訪問診療";
-document.getElementById("doorDesc").innerText="医師がご自宅へ訪問します。";
+serviceTitle.innerText="Our Services";
 
-document.getElementById("docTitle").innerText="👨‍⚕️ 医師相談";
-document.getElementById("docDesc").innerText="専門医による診察。";
+doorTitle.innerText="🚚 Doorstep Visit";
+doorDesc.innerText="Expert care delivered at your home.";
 
-document.getElementById("phyTitle").innerText="💪 理学療法";
-document.getElementById("phyDesc").innerText="専門的なリハビリ治療。";
+docTitle.innerText="👨‍⚕️ Doctor Visit";
+docDesc.innerText="Consult specialist doctors easily.";
 
-document.getElementById("contactTitle").innerText="お問い合わせ";
+phyTitle.innerText="💪 Physiotherapy";
+phyDesc.innerText="Professional recovery sessions.";
 
-document.getElementById("footerText").innerText="© 2026 ケアループ. 全著作権所有。";
+contactTitle.innerText="Contact Us";
 
-document.getElementById("doorFormTitle").innerText="訪問医師予約";
-document.getElementById("docFormTitle").innerText="医師予約";
-document.getElementById("phyFormTitle").innerText="理学療法予約";
+doorFormTitle.innerText="Doorstep Doctor Visit";
+docFormTitle.innerText="Doctor Appointment";
+phyFormTitle.innerText="Physiotherapy Session";
+
+doorBtn.innerText="Book";
+docBtn.innerText="Book";
+phyBtn.innerText="Book";
+
+footerText.innerText="© 2026 Careloop. All rights reserved.";
 
 }
+
 else{
-location.reload();
-}
 
-}
+document.documentElement.lang="ja";
 
+navHome.innerText="ホーム";
+navServices.innerText="サービス";
+navContact.innerText="お問い合わせ";
+
+homeTitle.innerText="ケアループへようこそ";
+homeDesc.innerText="ご自宅で安心できる医療サービス。";
+
+serviceTitle.innerText="サービス内容";
+
+doorTitle.innerText="🚚 訪問診療";
+doorDesc.innerText="医師がご自宅へ訪問します。";
+
+docTitle.innerText="👨‍⚕️ 医師相談";
+docDesc.innerText="専門医による診察。";
+
+phyTitle.innerText="💪 理学療法";
+phyDesc.innerText="専門的なリハビリ治療。";
+
+contactTitle.innerText="お問い合わせ";
+
+doorFormTitle.innerText="訪問医師予約";
+docFormTitle.innerText="医師予約";
+phyFormTitle.innerText="理学療法予約";
+
+doorBtn.innerText="予約する";
+docBtn.innerText="予約する";
+phyBtn.innerText="予約する";
+
+footerText.innerText="© 2026 ケアループ. 全著作権所有。";
+}
+}
 </script>
 
 </body>
