@@ -7,7 +7,7 @@
 
 <style>
 body {
-font-family: 'Arial', sans-serif;
+font-family: "Times New Roman", Times, serif;
 margin: 0;
 padding: 0;
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -115,6 +115,7 @@ padding: 1rem;
 margin: 1rem 0;
 border-radius: 8px;
 border: 1px solid #ddd;
+font-family: "Times New Roman", Times, serif;
 }
 
 button {
@@ -125,6 +126,7 @@ border: none;
 border-radius: 8px;
 cursor: pointer;
 width: 100%;
+font-family: "Times New Roman", Times, serif;
 }
 
 footer {
@@ -183,72 +185,75 @@ text-align: center;
 </div>
 </section>
 
-<section id="contact">
-<h2 id="contactTitle">お問い合わせ</h2>
-</section>
-
-<!-- MODALS -->
-
-<div id="doorstepModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal('doorstep')">&times;</span>
-<h2 id="doorFormTitle">訪問医師予約</h2>
-<form onsubmit="handleSubmit(event,'doorstep')">
-<input id="d_name" placeholder="患者名">
-<input id="d_phone" placeholder="電話番号">
-<input id="d_address" placeholder="住所">
-<textarea id="d_symptoms" placeholder="症状"></textarea>
-<button type="submit" id="doorBtn">予約する</button>
-</form>
-</div>
-</div>
-
-<!-- OTHER MODALS SAME STRUCTURE (kept short here but use same pattern) -->
-
 <footer>
 <p id="footerText">© 2026 ケアループ. 全著作権所有。</p>
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-changeLanguage("jp");
+document.addEventListener("DOMContentLoaded", function() {
 
-document.getElementById("langSelect")
-.addEventListener("change", function(){
+document.getElementById("langSelect").addEventListener("change", function() {
 changeLanguage(this.value);
 });
+
+changeLanguage("jp");
+
 });
 
-function openModal(type){
-document.getElementById(type+"Modal").style.display="block";
-}
-
-function closeModal(type){
-document.getElementById(type+"Modal").style.display="none";
-}
-
-function handleSubmit(event,type){
-event.preventDefault();
-alert("Form submitted successfully!");
-closeModal(type);
-}
-
-function changeLanguage(lang){
+function changeLanguage(lang) {
 
 const t = id => document.getElementById(id);
 
-if(lang==="en"){
-t("d_name").placeholder="Patient Name";
-t("d_phone").placeholder="Phone Number";
-t("d_address").placeholder="Address";
-t("d_symptoms").placeholder="Symptoms";
+if (lang === "en") {
+
+document.documentElement.lang = "en";
+
+t("navHome").innerText = "Home";
+t("navServices").innerText = "Services";
+t("navContact").innerText = "Contact";
+
+t("homeTitle").innerText = "Welcome to Careloop";
+t("homeDesc").innerText = "Your casual healthcare partner for doorstep convenience.";
+
+t("serviceTitle").innerText = "Our Services";
+
+t("doorTitle").innerText = "🚚 Doorstep Visit";
+t("doorDesc").innerText = "Expert care delivered at your home.";
+
+t("docTitle").innerText = "👨‍⚕️ Doctor Consultation";
+t("docDesc").innerText = "Consult specialist doctors easily.";
+
+t("phyTitle").innerText = "💪 Physiotherapy";
+t("phyDesc").innerText = "Professional recovery sessions.";
+
+t("footerText").innerText = "© 2026 Careloop. All rights reserved.";
+
+} else {
+
+document.documentElement.lang = "ja";
+
+t("navHome").innerText = "ホーム";
+t("navServices").innerText = "サービス";
+t("navContact").innerText = "お問い合わせ";
+
+t("homeTitle").innerText = "ケアループへようこそ";
+t("homeDesc").innerText = "ご自宅で安心できる医療サービス。";
+
+t("serviceTitle").innerText = "サービス内容";
+
+t("doorTitle").innerText = "🚚 訪問診療";
+t("doorDesc").innerText = "医師がご自宅へ訪問します。";
+
+t("docTitle").innerText = "👨‍⚕️ 医師相談";
+t("docDesc").innerText = "専門医による診察。";
+
+t("phyTitle").innerText = "💪 理学療法";
+t("phyDesc").innerText = "専門的なリハビリ治療。";
+
+t("footerText").innerText = "© 2026 ケアループ. 全著作権所有。";
+
 }
-else{
-t("d_name").placeholder="患者名";
-t("d_phone").placeholder="電話番号";
-t("d_address").placeholder="住所";
-t("d_symptoms").placeholder="症状";
-}
+
 }
 </script>
 
